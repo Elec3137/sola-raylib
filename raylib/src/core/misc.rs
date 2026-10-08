@@ -79,7 +79,7 @@ impl RaylibHandle {
         unsafe { Image(ffi::LoadImageFromScreen()) }
     }
 
-    /// Takes a screenshot of current screen
+    /// Take a screenshot of current screen
     ///
     /// Internal logic is shared with [Image::export_image]
     pub fn take_screenshot(&mut self, _: &RaylibThread, filename: &str) {
@@ -89,7 +89,7 @@ impl RaylibHandle {
         }
     }
 
-    /// Returns a random value between min and max (both included)
+    /// Return a random value between min and max (both included)
     /// ```ignore
     /// use sola_raylib::*;
     /// fn main() {
