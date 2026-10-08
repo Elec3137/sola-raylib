@@ -1050,7 +1050,7 @@ impl Image {
         Ok(Image(i))
     }
 
-    /// Creates an image from `text` (custom font).
+    /// Creates an image from `text`.
     #[inline]
     pub fn image_text(text: &str, font_size: i32, color: impl Into<ffi::Color>) -> Image {
         let c_text = CString::new(text).unwrap();
