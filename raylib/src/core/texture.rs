@@ -737,7 +737,7 @@ impl Image {
         }
     }
 
-    /// Converts `image color to grayscale.
+    /// Converts image color to grayscale.
     #[inline]
     pub fn color_grayscale(&mut self) {
         unsafe {
