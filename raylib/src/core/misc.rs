@@ -58,6 +58,7 @@ impl<'a> Iterator for RandSeqIterator<'a> {
 /// fn main() {
 ///     open_url("https://google.com");
 /// }
+/// ```
 pub fn open_url(url: &str) {
     let s = CString::new(url).expect("Not a string");
     unsafe {
@@ -94,6 +95,7 @@ impl RaylibHandle {
     ///     let r = rl.get_random_value(0, 10);
     ///     println!("random value: {}", r);
     /// }
+    /// ```
     pub fn get_random_value<T: From<i32>>(&self, num: Range<i32>) -> T {
         unsafe { (ffi::GetRandomValue(num.start, num.end) as i32).into() }
     }
