@@ -225,7 +225,9 @@ impl Image {
     pub fn from_channel(&self, selected_channel: i32) -> Image {
         unsafe { Image(ffi::ImageFromChannel(self.0, selected_channel)) }
     }
-    /// Exports image as a PNG file.
+
+    /// Export image data to file.
+    /// NOTE: File format depends on fileName extension
     #[inline]
     pub fn export_image(&self, filename: &str) {
         let c_filename = CString::new(filename).unwrap();
@@ -234,7 +236,7 @@ impl Image {
         }
     }
 
-    /// Exports image as a PNG file.
+    /// Export image as code file defining an array of bytes.
     #[inline]
     pub fn export_image_as_code(&self, filename: &str) {
         let c_filename = CString::new(filename).unwrap();
