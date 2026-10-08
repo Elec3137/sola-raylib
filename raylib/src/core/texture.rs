@@ -116,7 +116,7 @@ impl AsMut<ffi::Texture2D> for WeakRenderTexture2D {
 }
 
 impl RenderTexture2D {
-    /// Converts this owned [`RenderTexture2D`] into a [`WeakRenderTexture2D`]
+    /// Convert this owned [`RenderTexture2D`] into a [`WeakRenderTexture2D`]
     /// that will not unload the underlying GPU resource on drop.
     ///
     /// # Safety
@@ -250,7 +250,7 @@ impl Image {
         unsafe { ffi::GetPixelDataSize(self.width(), self.height(), self.format() as i32) as usize }
     }
 
-    /// Gets pixel data from `image` as a Vec of Color structs.
+    /// Get pixel data from `image` as a Vec of Color structs.
     pub fn get_image_data(&self) -> ImageColors {
         unsafe {
             let image_data = ffi::LoadImageColors(self.0);
@@ -274,7 +274,7 @@ impl Image {
         }
     }
 
-    /// Converts `image` to POT (power-of-two).
+    /// Convert `image` to POT (power-of-two).
     #[inline]
     pub fn to_pot(&mut self, fill_color: impl Into<ffi::Color>) {
         unsafe {
@@ -282,7 +282,7 @@ impl Image {
         }
     }
 
-    /// Converts `image` data to desired pixel format.
+    /// Convert `image` data to desired pixel format.
     #[inline]
     pub fn set_format(&mut self, new_format: crate::consts::PixelFormat) {
         unsafe {
@@ -290,7 +290,7 @@ impl Image {
         }
     }
 
-    /// Applies alpha mask to `image`.
+    /// Apply alpha mask to `image`.
     /// Alpha mask must be same size as the image. If alpha mask is not greyscale
     /// Ensure the colors are white (255, 255, 255, 255) or black (0, 0, 0, 0)
     #[inline]
@@ -300,7 +300,7 @@ impl Image {
         }
     }
 
-    /// Clears alpha channel on `image` to desired color.
+    /// Clear alpha channel on `image` to desired color.
     #[inline]
     pub fn alpha_clear(&mut self, color: impl Into<ffi::Color>, threshold: f32) {
         unsafe {
@@ -308,7 +308,7 @@ impl Image {
         }
     }
 
-    /// Crops `image` depending on alpha value.
+    /// Crop `image` depending on alpha value.
     #[inline]
     pub fn alpha_crop(&mut self, threshold: f32) {
         unsafe {
@@ -316,7 +316,7 @@ impl Image {
         }
     }
 
-    /// Premultiplies alpha channel on `image`.
+    /// Premultiply alpha channel on `image`.
     #[inline]
     pub fn alpha_premultiply(&mut self) {
         unsafe {
@@ -324,7 +324,7 @@ impl Image {
         }
     }
 
-    /// Crops `image` to a defined rectangle.
+    /// Crop `image` to a defined rectangle.
     #[inline]
     pub fn crop(&mut self, crop: impl Into<ffi::Rectangle>) {
         unsafe {
@@ -332,7 +332,7 @@ impl Image {
         }
     }
 
-    /// Resizes `image` (bilinear filtering).
+    /// Resize `image` (bilinear filtering).
     #[inline]
     pub fn resize(&mut self, new_width: i32, new_height: i32) {
         unsafe {
@@ -340,7 +340,7 @@ impl Image {
         }
     }
 
-    /// Resizes `image` (nearest-neighbor scaling).
+    /// Resize `image` (nearest-neighbor scaling).
     #[inline]
     pub fn resize_nn(&mut self, new_width: i32, new_height: i32) {
         unsafe {
@@ -348,7 +348,7 @@ impl Image {
         }
     }
 
-    /// Resizes `image` canvas and fills with `color`.
+    /// Resize `image` canvas and fills with `color`.
     #[inline]
     pub fn resize_canvas(
         &mut self,
@@ -370,7 +370,7 @@ impl Image {
         }
     }
 
-    /// Generates all mipmap levels for a provided `image`.
+    /// Generate all mipmap levels for a provided `image`.
     #[inline]
     pub fn gen_mipmaps(&mut self) {
         unsafe {
@@ -378,7 +378,7 @@ impl Image {
         }
     }
 
-    /// Dithers `image` data to 16bpp or lower (Floyd-Steinberg dithering).
+    /// Dither `image` data to 16bpp or lower (Floyd-Steinberg dithering).
     #[inline]
     pub fn dither(&mut self, r_bpp: i32, g_bpp: i32, b_bpp: i32, a_bpp: i32) {
         unsafe {
@@ -398,7 +398,7 @@ impl Image {
         unsafe { ffi::ImageClearBackground(&mut self.0, color.into()) }
     }
 
-    /// Draws a source image within a destination image.
+    /// Draw a source image within a destination image.
     #[inline]
     pub fn draw(
         &mut self,
@@ -628,7 +628,7 @@ impl Image {
         }
     }
 
-    /// Draws a rectangle within an image.
+    /// Draw a rectangle within an image.
     #[inline]
     pub fn draw_rectangle_lines(
         &mut self,
@@ -641,7 +641,7 @@ impl Image {
         }
     }
 
-    /// Draws text (default font) within an image (destination).
+    /// Draw text (default font) within an image (destination).
     #[inline]
     pub fn draw_text(
         &mut self,
@@ -664,7 +664,7 @@ impl Image {
         }
     }
 
-    /// Draws text (default font) within an image (destination).
+    /// Draw text (default font) within an image (destination).
     #[inline]
     pub fn draw_text_ex(
         &mut self,
@@ -689,7 +689,7 @@ impl Image {
         }
     }
 
-    /// Flips `image` vertically.
+    /// Flip `image` vertically.
     #[inline]
     pub fn flip_vertical(&mut self) {
         unsafe {
@@ -697,7 +697,7 @@ impl Image {
         }
     }
 
-    /// Flips `image` horizontally.
+    /// Flip `image` horizontally.
     #[inline]
     pub fn flip_horizontal(&mut self) {
         unsafe {
@@ -705,7 +705,7 @@ impl Image {
         }
     }
 
-    /// Rotates `image` clockwise by 90 degrees (PI/2 radians).
+    /// Rotate `image` clockwise by 90 degrees (PI/2 radians).
     #[inline]
     pub fn rotate_cw(&mut self) {
         unsafe {
@@ -713,7 +713,7 @@ impl Image {
         }
     }
 
-    /// Rotates `image` counterclockwise by 90 degrees (PI/2 radians).
+    /// Rotate `image` counterclockwise by 90 degrees (PI/2 radians).
     #[inline]
     pub fn rotate_ccw(&mut self) {
         unsafe {
@@ -721,7 +721,7 @@ impl Image {
         }
     }
 
-    /// Tints colors in `image` using specified `color`.
+    /// Tint colors in `image` using specified `color`.
     #[inline]
     pub fn color_tint(&mut self, color: impl Into<ffi::Color>) {
         unsafe {
@@ -729,7 +729,7 @@ impl Image {
         }
     }
 
-    /// Inverts the colors in `image`.
+    /// Invert the colors in `image`.
     #[inline]
     pub fn color_invert(&mut self) {
         unsafe {
@@ -737,7 +737,7 @@ impl Image {
         }
     }
 
-    /// Converts image color to grayscale.
+    /// Convert image color to grayscale.
     #[inline]
     pub fn color_grayscale(&mut self) {
         unsafe {
@@ -745,7 +745,7 @@ impl Image {
         }
     }
 
-    /// Adjusts the contrast of `image`.
+    /// Adjust the contrast of `image`.
     #[inline]
     pub fn color_contrast(&mut self, contrast: f32) {
         unsafe {
@@ -753,7 +753,7 @@ impl Image {
         }
     }
 
-    /// Adjusts the brightness of `image`.
+    /// Adjust the brightness of `image`.
     #[inline]
     pub fn color_brightness(&mut self, brightness: i32) {
         unsafe {
@@ -761,7 +761,7 @@ impl Image {
         }
     }
 
-    /// Searches `image` for all occurences of `color` and replaces them with `replace` color.
+    /// Search `image` for all occurences of `color` and replaces them with `replace` color.
     #[inline]
     pub fn color_replace(&mut self, color: impl Into<ffi::Color>, replace: impl Into<ffi::Color>) {
         unsafe {
@@ -820,11 +820,12 @@ impl Image {
         Ok(())
     }
 
-    /// Generates a plain `color` Image.
+    /// Generate a plain `color` Image.
     #[inline]
     pub fn gen_image_color(width: i32, height: i32, color: impl Into<ffi::Color>) -> Image {
         unsafe { Image(ffi::GenImageColor(width, height, color.into())) }
     }
+
     /// Generate image: perlin noise
     pub fn gen_image_perlin_noise(
         &self,
@@ -837,7 +838,7 @@ impl Image {
         Image(unsafe { ffi::GenImagePerlinNoise(width, height, offset_x, offset_y, scale) })
     }
 
-    /// Generates an Image containing a radial gradient.
+    /// Generate an Image containing a radial gradient.
     #[inline]
     pub fn gen_image_gradient_radial(
         width: i32,
@@ -857,7 +858,7 @@ impl Image {
         }
     }
 
-    /// Generates an Image containing a checkerboard pattern.
+    /// Generate an Image containing a checkerboard pattern.
     #[inline]
     pub fn gen_image_checked(
         width: i32,
@@ -918,19 +919,19 @@ impl Image {
         }
     }
 
-    // Generates an image with text
+    // Generate an image with text
     pub fn gen_image_text(width: i32, height: i32, text: &str) -> Image {
         let c_str = CString::new(text).unwrap();
         unsafe { Image(ffi::GenImageText(width, height, c_str.as_ptr())) }
     }
 
-    /// Generates an Image containing white noise.
+    /// Generate an Image containing white noise.
     #[inline]
     pub fn gen_image_white_noise(width: i32, height: i32, factor: f32) -> Image {
         unsafe { Image(ffi::GenImageWhiteNoise(width, height, factor)) }
     }
 
-    /// Generates an Image using a cellular algorithm. Bigger `tile_size` means bigger cells.
+    /// Generate an Image using a cellular algorithm. Bigger `tile_size` means bigger cells.
     #[inline]
     pub fn gen_image_cellular(width: i32, height: i32, tile_size: i32) -> Image {
         unsafe { Image(ffi::GenImageCellular(width, height, tile_size)) }
@@ -948,7 +949,7 @@ impl Image {
         Ok(Image(i))
     }
 
-    /// Loads image from file into CPU memory (RAM).
+    /// Load image from file into CPU memory (RAM).
     pub fn load_image(filename: &str) -> Result<Image, Error> {
         let c_filename = CString::new(filename).unwrap();
         let i = unsafe { ffi::LoadImage(c_filename.as_ptr()) };
@@ -960,7 +961,7 @@ impl Image {
         Ok(Image(i))
     }
 
-    /// Loads image from a given memory buffer
+    /// Load image from a given memory buffer
     /// The input data is expected to be in a supported file format such as png. Which formats are
     /// supported depend on the build flags used for the raylib (C) library.
     pub fn load_image_from_mem(filetype: &str, bytes: &[u8]) -> Result<Image, Error> {
@@ -1050,14 +1051,14 @@ impl Image {
         Ok(Image(i))
     }
 
-    /// Creates an image from `text`.
+    /// Create an image from `text`.
     #[inline]
     pub fn image_text(text: &str, font_size: i32, color: impl Into<ffi::Color>) -> Image {
         let c_text = CString::new(text).unwrap();
         unsafe { Image(ffi::ImageText(c_text.as_ptr(), font_size, color.into())) }
     }
 
-    /// Creates an image from `text` (custom font).
+    /// Create an image from `text` (custom font).
     #[inline]
     pub fn image_text_ex(
         font: impl std::convert::AsRef<ffi::Font>,
@@ -1122,7 +1123,7 @@ pub trait RaylibTexture2D: AsRef<ffi::Texture2D> + AsMut<ffi::Texture2D> {
         self.as_ref().format
     }
 
-    /// Updates GPU texture with new data.
+    /// Update GPU texture with new data.
     #[inline]
     fn update_texture(&mut self, pixels: &[u8]) -> Result<(), Error> {
         let expected_len = unsafe {
@@ -1197,7 +1198,7 @@ pub trait RaylibTexture2D: AsRef<ffi::Texture2D> + AsMut<ffi::Texture2D> {
         Ok(())
     }
 
-    /// Gets pixel data from GPU texture and returns an `Image`.
+    /// Get pixel data from GPU texture and returns an `Image`.
     /// Fairly sure this would never fail. If it does wrap in result.
     #[inline]
     fn load_image(&self) -> Result<Image, Error> {
@@ -1208,7 +1209,7 @@ pub trait RaylibTexture2D: AsRef<ffi::Texture2D> + AsMut<ffi::Texture2D> {
         Ok(Image(i))
     }
 
-    /// Generates GPU mipmaps for a `texture`.
+    /// Generate GPU mipmaps for a `texture`.
     #[inline]
     fn gen_texture_mipmaps(&mut self) {
         unsafe {
@@ -1216,7 +1217,7 @@ pub trait RaylibTexture2D: AsRef<ffi::Texture2D> + AsMut<ffi::Texture2D> {
         }
     }
 
-    /// Sets global `texture` scaling filter mode.
+    /// Set global `texture` scaling filter mode.
     #[inline]
     fn set_texture_filter(&self, _: &RaylibThread, filter_mode: crate::consts::TextureFilter) {
         unsafe {
@@ -1224,7 +1225,7 @@ pub trait RaylibTexture2D: AsRef<ffi::Texture2D> + AsMut<ffi::Texture2D> {
         }
     }
 
-    /// Sets global texture wrapping mode.
+    /// Set global texture wrapping mode.
     #[inline]
     fn set_texture_wrap(&self, _: &RaylibThread, wrap_mode: crate::consts::TextureWrap) {
         unsafe {
@@ -1237,7 +1238,7 @@ pub trait RaylibTexture2D: AsRef<ffi::Texture2D> + AsMut<ffi::Texture2D> {
     }
 }
 
-/// Gets pixel data size in bytes (image or texture).
+/// Get pixel data size in bytes (image or texture).
 #[inline]
 pub fn get_pixel_data_size(width: i32, height: i32, format: ffi::PixelFormat) -> i32 {
     unsafe { ffi::GetPixelDataSize(width, height, format as i32) }
@@ -1285,7 +1286,7 @@ pub fn set_pixel_color(
 }
 
 impl RaylibHandle {
-    /// Loads texture from file into GPU memory (VRAM).
+    /// Load texture from file into GPU memory (VRAM).
     pub fn load_texture(&mut self, _: &RaylibThread, filename: &str) -> Result<Texture2D, Error> {
         let c_filename = CString::new(filename).unwrap();
         let t = unsafe { ffi::LoadTexture(c_filename.as_ptr()) };
@@ -1309,7 +1310,7 @@ impl RaylibHandle {
         Ok(Texture2D(t))
     }
 
-    /// Loads texture from image data.
+    /// Load texture from image data.
     #[inline]
     pub fn load_texture_from_image(
         &mut self,
@@ -1323,7 +1324,7 @@ impl RaylibHandle {
         Ok(Texture2D(t))
     }
 
-    /// Loads texture for rendering (framebuffer).
+    /// Load texture for rendering (framebuffer).
     pub fn load_render_texture(
         &mut self,
         _: &RaylibThread,
