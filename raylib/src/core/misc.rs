@@ -79,7 +79,9 @@ impl RaylibHandle {
         unsafe { Image(ffi::LoadImageFromScreen()) }
     }
 
-    /// Takes a screenshot of current screen (saved a .png)
+    /// Takes a screenshot of current screen
+    ///
+    /// Internal logic is shared with [Image::export_image]
     pub fn take_screenshot(&mut self, _: &RaylibThread, filename: &str) {
         let c_filename = CString::new(filename).unwrap();
         unsafe {
